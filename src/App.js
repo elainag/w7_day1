@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 
 function App() {
   const [tasks, setTasks] = useState([
-    { name: 'Buy Shopping', isComplete: false },
-    { name: 'Clean Batheroom', isComplete: false },
-    { name: "Car's MOT", isComplete: false },
+    { name: 'Buy Shopping', isComplete: false, priority: 'high' },
+    { name: 'Clean Batheroom', isComplete: false, priority: 'low' },
+    { name: "Car's MOT", isComplete: false, priority: 'high' },
   ])
 
 
   const taskNodes = tasks.map((task, index) => {
     return (<li key={index} className={task.isComplete ? 'complete' : 'not-complete'}>
-      <span>{task.name}</span>
-      {task.isComplete ? <span className='complete'>Complete!</span> : <button onClick={() => completeTask(index)}>Complete</button>}
+      <span>{task.name}</span> <span>{task.priority}</span>
+      {task.isComplete ? <span className='complete'>Complete!</span> : <button onClick={() => completeTask(index)}>Complete?</button>}
     </li>
     )
   })
@@ -46,6 +46,8 @@ function App() {
 
       <form onSubmit={saveNewTask}>
         <label htmlFor='new-task'></label>
+        <input type='radio' name='high' value='high' />
+        <input type='radio' name='low' value='low' />
         <input id='new-task' type='text' value={newTask} onChange={handleTaskInput} />
         <input type='submit' value='Save Task' />
       </form>
@@ -56,6 +58,6 @@ function App() {
     </div>
   );
 }
-
+<input></input>
 
 export default App;
